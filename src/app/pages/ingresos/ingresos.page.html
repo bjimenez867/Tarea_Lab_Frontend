@@ -1,0 +1,89 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ingresos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirNuevo()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="cargando" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="!cargando">
+    <ion-item-sliding *ngFor="let ingreso of ingresos">
+      <ion-item>
+        <ion-label>
+          <h2>{{ placaVehiculo(ingreso.vehiculoId) }}</h2>
+          <p>Espacio: {{ numeroEspacio(ingreso.espacioId) }}</p>
+          <p>Ingreso: {{ ingreso.fechaIngreso | date:'short' }}</p>
+          <p *ngIf="ingreso.fechaSalida">Salida: {{ ingreso.fechaSalida | date:'short' }}</p>
+        </ion-label>
+        <ion-badge [color]="ingreso.estado === 'Activo' ? 'success' : 'medium'" slot="end">
+          {{ ingreso.estado }}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="tertiary" (click)="registrarSalida(ingreso)" *ngIf="ingreso.estado === 'Activo'">
+          <ion-icon name="exit-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar(ingreso)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item *ngIf="ingresos.length === 0">
+      <ion-label class="ion-text-center">No hay ingresos registrados</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-modal [isOpen]="mostrarFormulario" (didDismiss)="cerrarFormulario()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Nuevo ingreso</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarFormulario()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="ingresoForm" (ngSubmit)="guardar()">
+          <ion-item>
+            <ion-label position="floating">Vehículo</ion-label>
+            <ion-select formControlName="vehiculoId" interface="action-sheet">
+              <ion-select-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.vehiculoId">
+                {{ vehiculo.placa }} · {{ vehiculo.marca }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Espacio disponible</ion-label>
+            <ion-select formControlName="espacioId" interface="action-sheet">
+              <ion-select-option *ngFor="let espacio of espaciosDisponibles" [value]="espacio.espacioId">
+                {{ espacio.numeroEspacio }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-text color="medium" *ngIf="espaciosDisponibles.length === 0">
+            <small>No hay espacios disponibles en este momento</small>
+          </ion-text>
+
+          <ion-button expand="block" type="submit" class="ion-margin-top">
+            Registrar ingreso
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

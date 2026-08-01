@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Espacios</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirNuevo()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="cargando" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="!cargando">
+    <ion-item-sliding *ngFor="let espacio of espacios">
+      <ion-item>
+        <ion-label>
+          <h2>{{ espacio.numeroEspacio }}</h2>
+          <p>{{ nombreParqueo(espacio.parqueoId) }}</p>
+        </ion-label>
+        <ion-badge [color]="espacio.disponible ? 'success' : 'danger'" slot="end">
+          {{ espacio.disponible ? 'Disponible' : 'Ocupado' }}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="abrirEditar(espacio)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar(espacio)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item *ngIf="espacios.length === 0">
+      <ion-label class="ion-text-center">No hay espacios registrados</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-modal [isOpen]="mostrarFormulario" (didDismiss)="cerrarFormulario()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ modoEdicion ? 'Editar espacio' : 'Nuevo espacio' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarFormulario()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="espacioForm" (ngSubmit)="guardar()">
+          <ion-item>
+            <ion-label position="floating">Parqueo</ion-label>
+            <ion-select formControlName="parqueoId" interface="action-sheet">
+              <ion-select-option *ngFor="let parqueo of parqueos" [value]="parqueo.parqueoId">
+                {{ parqueo.nombreParqueo }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Número de espacio</ion-label>
+            <ion-input formControlName="numeroEspacio"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Disponible</ion-label>
+            <ion-toggle formControlName="disponible" slot="end"></ion-toggle>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Activo</ion-label>
+            <ion-toggle formControlName="activo" slot="end"></ion-toggle>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" class="ion-margin-top">
+            Guardar
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

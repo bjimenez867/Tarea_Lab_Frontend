@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Vehículos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirNuevo()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="cargando" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <ion-list *ngIf="!cargando">
+    <ion-item-sliding *ngFor="let vehiculo of vehiculos">
+      <ion-item>
+        <ion-label>
+          <h2>{{ vehiculo.placa }}</h2>
+          <p>{{ vehiculo.marca }} {{ vehiculo.modelo }} · {{ nombreTipoVehiculo(vehiculo.tipoVehiculoId) }}</p>
+          <p>{{ nombreCliente(vehiculo.clienteId) }}</p>
+        </ion-label>
+        <ion-badge [color]="vehiculo.activo ? 'success' : 'medium'" slot="end">
+          {{ vehiculo.activo ? 'Activo' : 'Inactivo' }}
+        </ion-badge>
+      </ion-item>
+
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="abrirEditar(vehiculo)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="eliminar(vehiculo)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+
+    <ion-item *ngIf="vehiculos.length === 0">
+      <ion-label class="ion-text-center">No hay vehículos registrados</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-modal [isOpen]="mostrarFormulario" (didDismiss)="cerrarFormulario()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>{{ modoEdicion ? 'Editar vehículo' : 'Nuevo vehículo' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarFormulario()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <form [formGroup]="vehiculoForm" (ngSubmit)="guardar()">
+          <ion-item>
+            <ion-label position="floating">Cliente</ion-label>
+            <ion-select formControlName="clienteId" interface="action-sheet">
+              <ion-select-option *ngFor="let cliente of clientes" [value]="cliente.clienteId">
+                {{ cliente.nombre }} {{ cliente.apellidos }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Tipo de vehículo</ion-label>
+            <ion-select formControlName="tipoVehiculoId" interface="action-sheet">
+              <ion-select-option *ngFor="let tipo of tiposVehiculo" [value]="tipo.tipoVehiculoId">
+                {{ tipo.descripcion }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Placa</ion-label>
+            <ion-input formControlName="placa"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Marca</ion-label>
+            <ion-input formControlName="marca"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Modelo</ion-label>
+            <ion-input formControlName="modelo"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Color</ion-label>
+            <ion-input formControlName="color"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Activo</ion-label>
+            <ion-toggle formControlName="activo" slot="end"></ion-toggle>
+          </ion-item>
+
+          <ion-button expand="block" type="submit" class="ion-margin-top">
+            Guardar
+          </ion-button>
+        </form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>
