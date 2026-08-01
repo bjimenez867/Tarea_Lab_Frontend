@@ -18,27 +18,24 @@
   </div>
 
   <ion-list *ngIf="!cargando">
-    <ion-item-sliding *ngFor="let vehiculo of vehiculos">
-      <ion-item>
-        <ion-label>
-          <h2>{{ vehiculo.placa }}</h2>
-          <p>{{ vehiculo.marca }} {{ vehiculo.modelo }} · {{ nombreTipoVehiculo(vehiculo.tipoVehiculoId) }}</p>
-          <p>{{ nombreCliente(vehiculo.clienteId) }}</p>
-        </ion-label>
-        <ion-badge [color]="vehiculo.activo ? 'success' : 'medium'" slot="end">
-          {{ vehiculo.activo ? 'Activo' : 'Inactivo' }}
-        </ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="abrirEditar(vehiculo)">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(vehiculo)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    <ion-item *ngFor="let vehiculo of vehiculos">
+      <ion-label>
+        <h2>{{ vehiculo.placa }}</h2>
+        <p>{{ vehiculo.marca }} {{ vehiculo.modelo }} · {{ nombreTipoVehiculo(vehiculo.tipoVehiculoId) }}</p>
+        <p>{{ nombreCliente(vehiculo.clienteId) }}</p>
+      </ion-label>
+      <ion-badge [color]="vehiculo.activo ? 'success' : 'medium'" slot="end" class="ion-margin-end">
+        {{ vehiculo.activo ? 'Activo' : 'Inactivo' }}
+      </ion-badge>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="abrirEditar(vehiculo)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="eliminar(vehiculo)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
 
     <ion-item *ngIf="vehiculos.length === 0">
       <ion-label class="ion-text-center">No hay vehículos registrados</ion-label>

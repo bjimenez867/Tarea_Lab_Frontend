@@ -18,27 +18,24 @@
   </div>
 
   <ion-list *ngIf="!cargando">
-    <ion-item-sliding *ngFor="let cliente of clientes">
-      <ion-item>
-        <ion-label>
-          <h2>{{ cliente.nombre }} {{ cliente.apellidos }}</h2>
-          <p>Cédula: {{ cliente.cedula }}</p>
-          <p *ngIf="cliente.correo">{{ cliente.correo }}</p>
-        </ion-label>
-        <ion-badge [color]="cliente.activo ? 'success' : 'medium'" slot="end">
-          {{ cliente.activo ? 'Activo' : 'Inactivo' }}
-        </ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="abrirEditar(cliente)">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(cliente)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    <ion-item *ngFor="let cliente of clientes">
+      <ion-label>
+        <h2>{{ cliente.nombre }} {{ cliente.apellidos }}</h2>
+        <p>Cédula: {{ cliente.cedula }}</p>
+        <p *ngIf="cliente.correo">{{ cliente.correo }}</p>
+      </ion-label>
+      <ion-badge [color]="cliente.activo ? 'success' : 'medium'" slot="end" class="ion-margin-end">
+        {{ cliente.activo ? 'Activo' : 'Inactivo' }}
+      </ion-badge>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="abrirEditar(cliente)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="eliminar(cliente)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
 
     <ion-item *ngIf="clientes.length === 0">
       <ion-label class="ion-text-center">No hay clientes registrados</ion-label>

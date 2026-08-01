@@ -18,26 +18,23 @@
   </div>
 
   <ion-list *ngIf="!cargando">
-    <ion-item-sliding *ngFor="let espacio of espacios">
-      <ion-item>
-        <ion-label>
-          <h2>{{ espacio.numeroEspacio }}</h2>
-          <p>{{ nombreParqueo(espacio.parqueoId) }}</p>
-        </ion-label>
-        <ion-badge [color]="espacio.disponible ? 'success' : 'danger'" slot="end">
-          {{ espacio.disponible ? 'Disponible' : 'Ocupado' }}
-        </ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="abrirEditar(espacio)">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(espacio)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    <ion-item *ngFor="let espacio of espacios">
+      <ion-label>
+        <h2>{{ espacio.numeroEspacio }}</h2>
+        <p>{{ nombreParqueo(espacio.parqueoId) }}</p>
+      </ion-label>
+      <ion-badge [color]="espacio.disponible ? 'success' : 'danger'" slot="end" class="ion-margin-end">
+        {{ espacio.disponible ? 'Disponible' : 'Ocupado' }}
+      </ion-badge>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="abrirEditar(espacio)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="eliminar(espacio)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
 
     <ion-item *ngIf="espacios.length === 0">
       <ion-label class="ion-text-center">No hay espacios registrados</ion-label>

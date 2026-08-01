@@ -18,28 +18,25 @@
   </div>
 
   <ion-list *ngIf="!cargando">
-    <ion-item-sliding *ngFor="let ingreso of ingresos">
-      <ion-item>
-        <ion-label>
-          <h2>{{ placaVehiculo(ingreso.vehiculoId) }}</h2>
-          <p>Espacio: {{ numeroEspacio(ingreso.espacioId) }}</p>
-          <p>Ingreso: {{ ingreso.fechaIngreso | date:'short' }}</p>
-          <p *ngIf="ingreso.fechaSalida">Salida: {{ ingreso.fechaSalida | date:'short' }}</p>
-        </ion-label>
-        <ion-badge [color]="ingreso.estado === 'Activo' ? 'success' : 'medium'" slot="end">
-          {{ ingreso.estado }}
-        </ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="tertiary" (click)="registrarSalida(ingreso)" *ngIf="ingreso.estado === 'Activo'">
-          <ion-icon name="exit-outline"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(ingreso)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    <ion-item *ngFor="let ingreso of ingresos">
+      <ion-label>
+        <h2>{{ placaVehiculo(ingreso.vehiculoId) }}</h2>
+        <p>Espacio: {{ numeroEspacio(ingreso.espacioId) }}</p>
+        <p>Ingreso: {{ ingreso.fechaIngreso | date:'short' }}</p>
+        <p *ngIf="ingreso.fechaSalida">Salida: {{ ingreso.fechaSalida | date:'short' }}</p>
+      </ion-label>
+      <ion-badge [color]="ingreso.estado === 'Activo' ? 'success' : 'medium'" slot="end" class="ion-margin-end">
+        {{ ingreso.estado }}
+      </ion-badge>
+      <ion-buttons slot="end">
+        <ion-button color="tertiary" (click)="registrarSalida(ingreso)" *ngIf="ingreso.estado === 'Activo'">
+          <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="eliminar(ingreso)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
 
     <ion-item *ngIf="ingresos.length === 0">
       <ion-label class="ion-text-center">No hay ingresos registrados</ion-label>

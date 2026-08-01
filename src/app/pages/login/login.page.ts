@@ -16,9 +16,9 @@ import Swal from 'sweetalert2';
 export class LoginPage {
   loginForm: FormGroup;
 
-  // Credenciales fijas temporales - se reemplaza por validación real contra backend
+  // Credenciales fijas 
   private readonly USUARIO_VALIDO = 'admin';
-  private readonly PASSWORD_VALIDA = 'admin123';
+  private readonly PASSWORD_VALIDA = 'admin';
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.loginForm = this.fb.group({

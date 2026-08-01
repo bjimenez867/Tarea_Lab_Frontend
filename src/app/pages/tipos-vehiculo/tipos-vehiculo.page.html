@@ -18,25 +18,22 @@
   </div>
 
   <ion-list *ngIf="!cargando">
-    <ion-item-sliding *ngFor="let tipo of tipos">
-      <ion-item>
-        <ion-label>
-          <h2>{{ tipo.descripcion }}</h2>
-        </ion-label>
-        <ion-badge [color]="tipo.activo ? 'success' : 'medium'" slot="end">
-          {{ tipo.activo ? 'Activo' : 'Inactivo' }}
-        </ion-badge>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option color="primary" (click)="abrirEditar(tipo)">
-          <ion-icon name="create-outline"></ion-icon>
-        </ion-item-option>
-        <ion-item-option color="danger" (click)="eliminar(tipo)">
-          <ion-icon name="trash-outline"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    <ion-item *ngFor="let tipo of tipos">
+      <ion-label>
+        <h2>{{ tipo.descripcion }}</h2>
+      </ion-label>
+      <ion-badge [color]="tipo.activo ? 'success' : 'medium'" slot="end" class="ion-margin-end">
+        {{ tipo.activo ? 'Activo' : 'Inactivo' }}
+      </ion-badge>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="abrirEditar(tipo)">
+          <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button color="danger" (click)="eliminar(tipo)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
 
     <ion-item *ngIf="tipos.length === 0">
       <ion-label class="ion-text-center">No hay tipos de vehículo registrados</ion-label>
