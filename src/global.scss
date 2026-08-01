@@ -35,3 +35,16 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+/**
+ * Fix SweetAlert2 dialogs inside Ionic apps.
+ * Ionic's `body { position: fixed }` app-shell layout leaves `body` with a
+ * computed height of 0, so `.swal2-container`'s `height: 100%` collapses to
+ * near-zero instead of the viewport — the popup gets clipped to a sliver.
+ * Forcing viewport units sidesteps the broken percentage resolution.
+ */
+.swal2-container {
+  height: 100vh !important;
+  min-height: 100vh !important;
+  z-index: 99999;
+}
