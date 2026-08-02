@@ -1,7 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonBadge,
+  IonModal,
+  IonInput,
+  IonText,
+  IonToggle,
+} from '@ionic/angular/standalone';
 import Swal from 'sweetalert2';
 import { ParqueoService } from '../../services/parqueo';
 import { Parqueo } from '../../models/parqueo.model';
@@ -9,7 +27,27 @@ import { Parqueo } from '../../models/parqueo.model';
 @Component({
   selector: 'app-parqueos',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonBadge,
+    IonModal,
+    IonInput,
+    IonText,
+    IonToggle,
+  ],
   templateUrl: './parqueos.page.html',
   styleUrls: ['./parqueos.page.scss'],
 })

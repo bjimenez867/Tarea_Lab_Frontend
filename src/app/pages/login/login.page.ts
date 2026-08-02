@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonContent, IonItem, IonLabel, IonInput, IonText, IonButton } from '@ionic/angular/standalone';
 import { Preferences } from '@capacitor/preferences';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [CommonModule, ReactiveFormsModule, IonContent, IonItem, IonLabel, IonInput, IonText, IonButton],
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })

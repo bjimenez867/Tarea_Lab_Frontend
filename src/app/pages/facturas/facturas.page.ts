@@ -1,7 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonNote,
+  IonModal,
+  IonSelect,
+  IonSelectOption,
+  IonInput,
+  IonText,
+} from '@ionic/angular/standalone';
 import Swal from 'sweetalert2';
 import { FacturaService } from '../../services/factura';
 import { IngresoService } from '../../services/ingreso';
@@ -14,7 +33,29 @@ import { MonedaPipe } from '../../pipes/moneda-pipe';
 @Component({
   selector: 'app-facturas',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule, MonedaPipe],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MonedaPipe,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonNote,
+    IonModal,
+    IonSelect,
+    IonSelectOption,
+    IonInput,
+    IonText,
+  ],
   templateUrl: './facturas.page.html',
   styleUrls: ['./facturas.page.scss'],
 })

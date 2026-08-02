@@ -1,7 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonBadge,
+  IonModal,
+  IonSelect,
+  IonSelectOption,
+  IonInput,
+  IonToggle,
+} from '@ionic/angular/standalone';
 import Swal from 'sweetalert2';
 import { EspacioParqueoService } from '../../services/espacio-parqueo';
 import { ParqueoService } from '../../services/parqueo';
@@ -11,7 +30,28 @@ import { Parqueo } from '../../models/parqueo.model';
 @Component({
   selector: 'app-espacios',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonBadge,
+    IonModal,
+    IonSelect,
+    IonSelectOption,
+    IonInput,
+    IonToggle,
+  ],
   templateUrl: './espacios.page.html',
   styleUrls: ['./espacios.page.scss'],
 })

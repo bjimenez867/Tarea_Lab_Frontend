@@ -1,7 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonBadge,
+  IonModal,
+  IonSelect,
+  IonSelectOption,
+  IonText,
+} from '@ionic/angular/standalone';
 import Swal from 'sweetalert2';
 import { IngresoService } from '../../services/ingreso';
 import { VehiculoService } from '../../services/vehiculo';
@@ -13,7 +31,27 @@ import { EspacioParqueo } from '../../models/espacio-parqueo.model';
 @Component({
   selector: 'app-ingresos',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonBadge,
+    IonModal,
+    IonSelect,
+    IonSelectOption,
+    IonText,
+  ],
   templateUrl: './ingresos.page.html',
   styleUrls: ['./ingresos.page.scss'],
 })

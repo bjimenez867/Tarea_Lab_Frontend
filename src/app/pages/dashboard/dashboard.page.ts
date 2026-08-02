@@ -1,6 +1,27 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonCardContent,
+  IonList,
+  IonListHeader,
+  IonLabel,
+  IonItem,
+} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { Preferences } from '@capacitor/preferences';
 import { Chart, registerables } from 'chart.js';
@@ -13,7 +34,30 @@ Chart.register(...registerables);
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, IonicModule, MonedaPipe],
+  imports: [
+    CommonModule,
+    MonedaPipe,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonGrid,
+    IonRow,
+    IonCol,
+    IonCard,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonCardContent,
+    IonList,
+    IonListHeader,
+    IonLabel,
+    IonItem,
+  ],
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })

@@ -1,7 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import {
+  ModalController,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonBadge,
+  IonModal,
+  IonInput,
+  IonText,
+  IonToggle,
+} from '@ionic/angular/standalone';
 import Swal from 'sweetalert2';
 import { ClienteService } from '../../services/cliente';
 import { Cliente } from '../../models/cliente.model';
@@ -9,7 +28,27 @@ import { Cliente } from '../../models/cliente.model';
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonBadge,
+    IonModal,
+    IonInput,
+    IonText,
+    IonToggle,
+  ],
   templateUrl: './clientes.page.html',
   styleUrls: ['./clientes.page.scss'],
 })

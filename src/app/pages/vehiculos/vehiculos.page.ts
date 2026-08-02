@@ -1,7 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonBackButton,
+  IonTitle,
+  IonButton,
+  IonIcon,
+  IonContent,
+  IonSpinner,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonBadge,
+  IonModal,
+  IonSelect,
+  IonSelectOption,
+  IonInput,
+  IonToggle,
+} from '@ionic/angular/standalone';
 import Swal from 'sweetalert2';
 import { VehiculoService } from '../../services/vehiculo';
 import { ClienteService } from '../../services/cliente';
@@ -13,7 +32,28 @@ import { TipoVehiculo } from '../../models/tipo-vehiculo.model';
 @Component({
   selector: 'app-vehiculos',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IonicModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonSpinner,
+    IonList,
+    IonItem,
+    IonLabel,
+    IonBadge,
+    IonModal,
+    IonSelect,
+    IonSelectOption,
+    IonInput,
+    IonToggle,
+  ],
   templateUrl: './vehiculos.page.html',
   styleUrls: ['./vehiculos.page.scss'],
 })
